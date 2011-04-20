@@ -61,20 +61,29 @@ function head(
       <p class="user-state"><a href="#">Log in</a> | <a href="#">Become an MDN member</a></p>
       <form id="site-search" method="get" action="#">
         <p><input type="text" role="search" placeholder="Search MDN" id="q" name="q" /> <button type="submit">Search</button></p>
-        <div id="site-search-gg"><div class="gsc-branding"><table class="gsc-branding" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img-noclear"><img class="gsc-branding-img-noclear" src="http://www.google.com/uds/css/small-logo.png"></td></tr></tbody></table></div></div>
+<!--         <div id="site-search-gg"><div class="gsc-branding"><table class="gsc-branding" cellpadding="0" cellspacing="0"><tbody><tr><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img-noclear"><img class="gsc-branding-img-noclear" src="http://www.google.com/uds/css/small-logo.png"></td></tr></tbody></table></div></div> -->
       </form>
     </div>
   
   <?php if ($headerclass == 'compact') : /* compact nav */ ?>
     <nav id="nav">
-      <h2 class="current"><a href="demos-landing.php">Demo Studio</a></h2>
+    <?php if (strpos($bodyclass,'demos')) : ?>
+      <h2 class="current"><a href="demos-landing.php">Demos</a></h2>
+    <?php elseif (strpos($bodyclass,'learning')) : ?>
+      <h2 class="current"><a href="learn-landing.php">Learning</a></h2>
+    <?php endif; ?>
       <div class="menu"><a href="#nav-main" class="toggle" title="Explore other parts of MDN">Explore MDN</a>
         <ul id="nav-main" class="sub-menu" role="navigation">
           <li id="nav-main-web"><a href="section-web.php" class="web">Web</a></li>
           <li id="nav-main-mobile"><a href="section-mobile.php" class="mobile">Mobile</a></li>
           <li id="nav-main-addons"><a href="section-addons.php" class="addons">Add-ons</a></li>
           <li id="nav-main-mozilla"><a href="section-apps.php" class="mozilla">Mozilla</a></li>
-          <li id="nav-extra-docs"><a href="docs-landing.php">Doc Center</a></li>
+          <li id="nav-extra-docs"><a href="docs-landing.php">Docs</a></li>
+        <?php if (strpos($bodyclass,'demos')) : ?>
+          <li id="nav-extra-learning"><a href="learn-landing.php">Learning</a></li>
+        <?php elseif (strpos($bodyclass,'learning')) : ?>
+          <li id="nav-extra-learning"><a href="demos-landing.php">Demos</a></li>
+        <?php endif; ?>
           <li id="nav-extra-forums"><a href="./forum">Forums</a></li>      
         </ul>
       </div>
@@ -129,8 +138,9 @@ function head(
       </ul>
   
       <ul id="nav-extra" role="navigation">
-        <li id="nav-extra-docs"><a href="docs-landing.php">Doc Center</a></li>
-        <li id="nav-extra-demos"><a href="demos-landing.php">Demo Studio</a></li>
+        <li id="nav-extra-docs"><a href="docs-landing.php">Docs</a></li>
+        <li id="nav-extra-demos"><a href="demos-landing.php">Demos</a></li>
+        <li id="nav-extra-learning"><a href="learn-landing.php">Learning</a></li>
         <li id="nav-extra-community"><a href="./forum/">Forums</a></li>
       </ul>
     </nav>
