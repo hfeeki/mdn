@@ -59,6 +59,9 @@ def learn_html(request):
     """HTML landing page."""
     return jingo.render(request, 'landing/learn_html.html')
 
+def learn_css(request):
+    """CSS landing page."""
+    return jingo.render(request, 'landing/learn_css.html')
 
 def common_landing(request, section=None, extra=None):
     """Common code for landing pages."""
