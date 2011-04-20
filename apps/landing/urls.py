@@ -11,4 +11,5 @@ urlpatterns = patterns('landing.views',
     url(r'^learn/?$', 'learn', name='learn'),
     url(r'^learn/html/?$', 'learn_html', name='learn_html'),
     url(r'^learn/css/?$', 'learn_css', name='learn_css'),
+    url(r'^learn/javascript/?$', 'learn_javascript', name='learn_javascript'),
 )

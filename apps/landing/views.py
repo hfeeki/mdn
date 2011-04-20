@@ -63,6 +63,10 @@ def learn_css(request):
     """CSS landing page."""
     return jingo.render(request, 'landing/learn_css.html')
 
+def learn_javascript(request):
+    """JavaScript landing page."""
+    return jingo.render(request, 'landing/learn_javascript.html')
+
 def common_landing(request, section=None, extra=None):
     """Common code for landing pages."""
     if not section:
