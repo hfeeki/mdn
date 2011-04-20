@@ -225,6 +225,7 @@ body.section-mozilla #nav-main-mozilla a, #nav-main .current a.mozilla { backgro
 .compact #nav-main a.addons:hover, .compact #nav-main a.addons:focus, .compact #nav-main a.addons:active { background: #00b6f0; }
 .compact #nav-main a.mozilla:hover, .compact #nav-main a.mozilla:focus, .compact #nav-main a.mozilla:active { background: #ed2024; }
 .compact #nav-main #nav-extra-docs a:hover, .compact #nav-main #nav-extra-docs a:focus, .compact #nav-main #nav-extra-docs a:active,
+.compact #nav-main #nav-extra-demos a:hover, .compact #nav-main #nav-extra-demos a:focus, .compact #nav-main #nav-extra-demos a:active,
 .compact #nav-main #nav-extra-learning a:hover, .compact #nav-main #nav-extra-learning a:focus, .compact #nav-main #nav-extra-learning a:active,
 .compact #nav-main #nav-extra-forums a:hover, .compact #nav-main #nav-extra-forums a:focus, .compact #nav-main #nav-extra-forums a:active { background: #f8d575; color: #000; }
 .compact #nav-extra-docs { border-top: 1px solid #888; }
@@ -1090,7 +1091,7 @@ body.popup .page-title { font: 200 1.714em/1 "League Gothic", Haettenschweiler, 
 .section-learning #page-head { margin: 0; padding: 40px 0 30px; text-align: center; border-top: 1px solid #a33500; clear: both; }
 .section-learning #page-head .crumb { font-size: .857em; text-align: left; margin-top: -1.75em; }
 .section-learning #page-head .crumb a:before { content: "\00AB\00A0"; }
-.section-learning #page-head p { text-align: left; width: 700px; margin: .25em auto; color: #666; }
+.section-learning #page-head p { width: 700px; margin: .25em auto; color: #666; }
 .section-learning #page-head.landing p { font-size: 20px; }
 .section-learning #page-head p strong { color: #333; }
 .section-learning #page-head .page-title { margin: 0 0 .1em; color: #ab181a; font: 200 72px/1 "League Gothic", Haettenschweiler, "Arial Narrow", sans-serif; letter-spacing: 1px; text-transform: uppercase; text-shadow: 3px 3px 0 rgba(170, 160, 130, 0.5); }

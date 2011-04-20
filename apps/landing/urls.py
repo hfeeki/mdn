@@ -8,4 +8,6 @@ urlpatterns = patterns('landing.views',
     url(r'^mobile/?$', 'mobile', name='mobile'),
     url(r'^search/?$', 'search', name='search'),
     url(r'^web/?$', 'web', name='web'),
+    url(r'^learn/?$', 'learn', name='learn'),
+    url(r'^learn/html/?$', 'learn_html', name='learn_html'),
 )
