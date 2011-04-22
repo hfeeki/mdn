@@ -1090,9 +1090,9 @@ body.popup .page-title { font: 200 1.714em/1 "League Gothic", Haettenschweiler, 
 .section-learning #page-head { margin: 0; padding: 40px 0 10px; text-align: center; border-top: 1px solid #a33500; clear: both; }
 .section-learning #page-head .crumb { font-size: .857em; text-align: left; margin-top: -1.75em; }
 .section-learning #page-head .crumb a:before { content: "\00AB\00A0"; }
-.section-learning #page-head p { text-align: left; font-size: .857em; width: 700px; margin: 0 auto 1em; color: #666; }
-.section-learning #page-head p.intro { text-align: center; font-size: 16px; }
-.section-learning #page-head.landing p { font-size: 20px; }
+.section-learning #page-head p { text-align: justify; font-size: .857em; width: 700px; margin: 0 auto 1em; color: #666; }
+.section-learning #page-head p.intro {  font-size: 16px; }
+.section-learning #page-head.landing p { text-align: center; font-size: 20px; }
 .section-learning #page-head p strong { color: #333; }
 .section-learning #page-head .page-title { margin: 0 0 .1em; color: #ab181a; font: 200 72px/1 "League Gothic", Haettenschweiler, "Arial Narrow", sans-serif; letter-spacing: 1px; text-transform: uppercase; text-shadow: 3px 3px 0 rgba(170, 160, 130, 0.5); }
 
