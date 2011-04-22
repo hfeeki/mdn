@@ -1090,8 +1090,8 @@ body.popup .page-title { font: 200 1.714em/1 "League Gothic", Haettenschweiler, 
 .section-learning #page-head { margin: 0; padding: 40px 0 10px; text-align: center; border-top: 1px solid #a33500; clear: both; }
 .section-learning #page-head .crumb { font-size: .857em; text-align: left; margin-top: -1.75em; }
 .section-learning #page-head .crumb a:before { content: "\00AB\00A0"; }
-.section-learning #page-head p { font-size: .857em; width: 700px; margin: 0 auto 1em; color: #666; }
-.section-learning #page-head p.intro { font-size: 16px; }
+.section-learning #page-head p { text-align: left; font-size: .857em; width: 700px; margin: 0 auto 1em; color: #666; }
+.section-learning #page-head p.intro { text-align: center; font-size: 16px; }
 .section-learning #page-head.landing p { font-size: 20px; }
 .section-learning #page-head p strong { color: #333; }
 .section-learning #page-head .page-title { margin: 0 0 .1em; color: #ab181a; font: 200 72px/1 "League Gothic", Haettenschweiler, "Arial Narrow", sans-serif; letter-spacing: 1px; text-transform: uppercase; text-shadow: 3px 3px 0 rgba(170, 160, 130, 0.5); }
@@ -1118,12 +1118,12 @@ body.popup .page-title { font: 200 1.714em/1 "League Gothic", Haettenschweiler, 
 #learn-fineprint { clear: both; margin: 20px 20px 40px; font-size: .786em; }
 
 .learn-module h2 { font: 200 36px/1 "League Gothic", Haettenschweiler, "Arial Narrow", sans-serif; text-transform: uppercase; color: #a36100; padding: 12px 18px 0 68px; margin: -18px -18px 15px; min-height: 56px; background: url("../img/icons-learnlevels.png") no-repeat; }
-#intro-level { width: 415px; float: left; }
+#intro-level { width: 415px; float: left; clear: left; }
 #intro-level h2 { background-position: 0 0; }
-#adv-level, #inter-level { width: 415px; float: right; }
+#inter-level, #learn-html #adv-level { width: 415px; float: right; clear: right; }
 #inter-level h2 { background-position: 0 -150px; }
+#adv-level, #examples { width: auto; float: none; clear: both; }
 #adv-level h2 { background-position: 0 -300px; }
-#examples, #learn-js #adv-level { width: auto; float: none; clear: both; }
 #examples h2 { background-position: 0 -450px; }
 
 .link-list { font-size: .857em; margin: 0 0 -1em; }
