@@ -43,7 +43,7 @@
           <h4 class="source">Wikiversity</h4>
           <p>{{ _('What are classes in CSS?') }}</p>
         </li>
-        <li>​
+        <li>
           <h3 class="title"><a href="http://en.wikiversity.org/wiki/Web_Design/External_CSS" rel="external">{{ _('External CSS') }}</a></h3>
           <h4 class="source">Wikiversity</h4>
           <p>{{ _('Using CSS from an external style sheet.') }}</p>
@@ -143,42 +143,43 @@
     </footer>
     
     <div id="css3-popup" class="tag-popup">
-      	<div class="bubble">
-        		<p>{{ _('This site features <strong>CSS3</strong>, the latest version of CSS that brings even more style and flexibility in making the Web even more beautiful and functional.') }}</p>
-        		<span></span>
-      	</div>
+      <div class="bubble">
+        <p>{{ _('This site features <strong>CSS3</strong>, the latest version of CSS that brings even more style and flexibility in making the Web even more beautiful and functional.') }}</p>
+        <span></span>
+      </div>
     </div>
 
+{% block js %}
 <script type="text/javascript">
 // <![CDATA[
 (function($) {
-	$.fn.popup = function(popupElem) {
-		this.removeAttr('title');
-		
-		return this.hover(
-			function onIn() {
-				var self = $(this),
-				    offs = self.offset(),
-				    w = self.outerWidth(),
-				    h = self.outerHeight();
-				$(popupElem)
-					.offset( { left: (offs.left + w/2), top: (offs.top + h/2) })
-					.addClass('visible');
-			},
-			function onOut() {
-				$(popupElem).removeClass('visible');
-			}
-		);
-	};
-	
-	$(function() {
-		$('.tag.css3').popup('#css3-popup');
-	});
+    $.fn.popup = function(popupElem) {
+        this.removeAttr('title');
+        
+        return this.hover(
+            function onIn() {
+                var self = $(this),
+                    offs = self.offset(),
+                    w = self.outerWidth(),
+                    h = self.outerHeight();
+                $(popupElem)
+                    .offset( { left: (offs.left + w/2), top: (offs.top + h/2) })
+                    .addClass('visible');
+            },
+            function onOut() {
+                $(popupElem).removeClass('visible');
+            }
+        );
+    };
+    
+    $(function() {
+        $('.tag.css3').popup('#css3-popup');
+    });
 })(jQuery);
-	
+    
 // ]]>
 </script>
-
+{% endblock %}
 
 </div>
 </section>
