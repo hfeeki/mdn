@@ -225,7 +225,6 @@ body.section-mozilla #nav-main-mozilla a, #nav-main .current a.mozilla { backgro
 .compact #nav-main a.addons:hover, .compact #nav-main a.addons:focus, .compact #nav-main a.addons:active { background: #00b6f0; }
 .compact #nav-main a.mozilla:hover, .compact #nav-main a.mozilla:focus, .compact #nav-main a.mozilla:active { background: #ed2024; }
 .compact #nav-main #nav-extra-docs a:hover, .compact #nav-main #nav-extra-docs a:focus, .compact #nav-main #nav-extra-docs a:active,
-.compact #nav-main #nav-extra-demos a:hover, .compact #nav-main #nav-extra-demos a:focus, .compact #nav-main #nav-extra-demos a:active,
 .compact #nav-main #nav-extra-learning a:hover, .compact #nav-main #nav-extra-learning a:focus, .compact #nav-main #nav-extra-learning a:active,
 .compact #nav-main #nav-extra-forums a:hover, .compact #nav-main #nav-extra-forums a:focus, .compact #nav-main #nav-extra-forums a:active { background: #f8d575; color: #000; }
 .compact #nav-extra-docs { border-top: 1px solid #888; }
@@ -1088,10 +1087,11 @@ body.popup .page-title { font: 200 1.714em/1 "League Gothic", Haettenschweiler, 
 
 /* @Learning pages *********/
 .section-learning #content { border: 0; }
-.section-learning #page-head { margin: 0; padding: 40px 0 30px; text-align: center; border-top: 1px solid #a33500; clear: both; }
+.section-learning #page-head { margin: 0; padding: 40px 0 10px; text-align: center; border-top: 1px solid #a33500; clear: both; }
 .section-learning #page-head .crumb { font-size: .857em; text-align: left; margin-top: -1.75em; }
 .section-learning #page-head .crumb a:before { content: "\00AB\00A0"; }
-.section-learning #page-head p { width: 700px; margin: .25em auto; color: #666; }
+.section-learning #page-head p { font-size: .857em; width: 700px; margin: 0 auto 1em; color: #666; }
+.section-learning #page-head p.intro { font-size: 16px; }
 .section-learning #page-head.landing p { font-size: 20px; }
 .section-learning #page-head p strong { color: #333; }
 .section-learning #page-head .page-title { margin: 0 0 .1em; color: #ab181a; font: 200 72px/1 "League Gothic", Haettenschweiler, "Arial Narrow", sans-serif; letter-spacing: 1px; text-transform: uppercase; text-shadow: 3px 3px 0 rgba(170, 160, 130, 0.5); }
@@ -1121,9 +1121,10 @@ body.popup .page-title { font: 200 1.714em/1 "League Gothic", Haettenschweiler, 
 #intro-level { width: 415px; float: left; }
 #intro-level h2 { background-position: 0 0; }
 #adv-level, #inter-level { width: 415px; float: right; }
-#adv-level h2 { background-position: 0 -150px; }
+#inter-level h2 { background-position: 0 -150px; }
+#adv-level h2 { background-position: 0 -300px; }
 #examples, #learn-js #adv-level { width: auto; float: none; clear: both; }
-#examples h2, #learn-js #inter-level h2 { background-position: 0 -300px; }
+#examples h2 { background-position: 0 -450px; }
 
 .link-list { font-size: .857em; margin: 0 0 -1em; }
 #content .link-list li { position: relative; border-bottom: 1px dotted #ccc; padding: 1em 0; background: none; }
@@ -1136,12 +1137,13 @@ body.popup .page-title { font: 200 1.714em/1 "League Gothic", Haettenschweiler, 
 .link-list.col1 { width: 46.5%; float: left; }
 .link-list.col2 { width: 46.5%; float: right; }
 
-.link-list .tag { display: inline-block; text-indent: -999em; }
-.link-list .tag.html5 { position: relative; width: 14px; height: 14px; margin-left: 2px; line-height: 14px; vertical-align: baseline; cursor: help; }
-.link-list .tag.html5:after { content: ''; position: absolute; left: 0; top: -1px; width: 14px; height: 17px; background: url("../img/icons-tags.png") 0 0 no-repeat; }
+.link-list .tag { display: inline-block; text-indent: -999em; position: relative; width: 14px; height: 14px; margin-left: 2px; line-height: 14px; vertical-align: baseline; cursor: help; }
+.link-list .tag:after { content: ''; position: absolute; left: 0; top: -1px; width: 14px; height: 17px; background: url("../img/icons-tags.png") 0 0 no-repeat; }
+.link-list .tag.html5:after { background-position: 0 0; }
+.link-list .tag.css3:after { background-position: 0 -50px; }
 
-#html5-popup { display: block; position: relative; left: 200px; top: -100px; width: 0; height: 0; }
-#html5-popup div { position: absolute; visibility: hidden; left: -170px; bottom: 8px; width: 340px; opacity: 0;
+.tag-popup { display: block; position: relative; left: 200px; top: -100px; width: 0; height: 0; }
+.tag-popup .bubble { position: absolute; visibility: hidden; left: -170px; bottom: 8px; width: 340px; opacity: 0;
 -moz-transition: bottom .4s ease-out;
 -moz-transition-property: bottom, opacity, visibility;
 -webkit-transition: bottom .4s ease;
@@ -1149,9 +1151,9 @@ body.popup .page-title { font: 200 1.714em/1 "League Gothic", Haettenschweiler, 
 transition: bottom .4s ease-out;
 transition-property: bottom, opacity, visibility;
 }
-#html5-popup.visible div { visibility: visible; bottom: 12px; opacity: 1; }
-#html5-popup p { margin: 0; padding: 10px; border-radius: 5px; background: #000; background: rgba(0,0,0,.85); color: #ccc; font-size: .785em; -moz-box-shadow: 0 2px 2px rgba(0,0,0,.15); -moz-box-shadow: 0 2px 2px rgba(0,0,0,.15); -moz-box-shadow: 0 2px 2px rgba(0,0,0,.15); text-shadow: 0 0 1px #000; }
-#html5-popup strong { color: #fff; }
-#html5-popup span { display: block; width: 0; height: 0; margin: 0 auto; border-top: 10px solid rgba(0,0,0,.85); border-left: 10px solid transparent; border-right: 10px solid transparent; }
+.tag-popup.visible .bubble { visibility: visible; bottom: 12px; opacity: 1; }
+.tag-popup p { margin: 0; padding: 10px; border-radius: 5px; background: #000; background: rgba(0,0,0,.85); color: #ccc; font-size: .785em; -moz-box-shadow: 0 2px 2px rgba(0,0,0,.15); -moz-box-shadow: 0 2px 2px rgba(0,0,0,.15); -moz-box-shadow: 0 2px 2px rgba(0,0,0,.15); text-shadow: 0 0 1px #000; }
+.tag-popup strong { color: #fff; }
+.tag-popup span { display: block; width: 0; height: 0; margin: 0 auto; border-top: 10px solid rgba(0,0,0,.85); border-left: 10px solid transparent; border-right: 10px solid transparent; }
 
 
