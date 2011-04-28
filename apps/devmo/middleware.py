@@ -6,7 +6,7 @@ Tried to use localeurl but it choked on 'en-US' with capital letters.
 
 import urllib
 
-from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect, HttpResponseForbidden
 from django.utils.encoding import smart_str
 
 import tower
@@ -14,6 +14,7 @@ import tower
 from . import urlresolvers
 from .helpers import urlparams
 
+from devmo.views import handle403
 
 class LocaleURLMiddleware(object):
     """
@@ -58,3 +59,13 @@ class LocaleURLMiddleware(object):
         request.path_info = '/' + prefixer.shortened_path
         request.locale = prefixer.locale
         tower.activate(prefixer.locale)
+
+class Forbidden403Middleware(object):
+    """
+    Renders a 403.html page if response.status_code == 403.
+    """
+    def process_response(self, request, response):
+        if isinstance(response, HttpResponseForbidden):
+            return handle403(request)
+        # If not 403, return response unmodified
+        return response

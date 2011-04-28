@@ -1,7 +1,9 @@
 import jingo
 import logging
+import random
 
 from django.conf import settings
+from django.core.cache import cache
 
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
 
@@ -28,6 +30,7 @@ from tagging.utils import LINEAR, LOGARITHMIC
 
 from demos.models import Submission
 from demos.forms import SubmissionNewForm, SubmissionEditForm
+from . import DEMOS_CACHE_NS_KEY
 
 from contentflagging.models import ContentFlag
 from contentflagging.forms import ContentFlagForm
@@ -38,6 +41,7 @@ from threadedcomments.models import ThreadedComment
 from utils import JingoTemplateLoader
 template_loader = JingoTemplateLoader()
 
+DEMOS_PAGE_SIZE = getattr(settings, 'DEMOS_PAGE_SIZE', 24)
 
 def home(request):
     """Home page."""
@@ -50,10 +54,14 @@ def home(request):
     if not Submission.allows_listing_hidden_by(request.user):
         submissions = submissions.exclude(hidden=True)
 
-    return jingo.render(request, 'demos/home.html', {
-        'featured_submission_list': featured_submissions.all()[:15],
-        'submission_list': submissions.all()[:15] 
-    })
+    return object_list(request, submissions,
+        extra_context={
+            'featured_submission_list': featured_submissions,
+        },
+        paginate_by=DEMOS_PAGE_SIZE, allow_empty=True,
+        template_loader=template_loader,
+        template_object_name='submission',
+        template_name='demos/home.html') 
 
 def detail(request, slug):
     """Detail page for a submission"""
@@ -76,7 +84,7 @@ def all(request):
     queryset = Submission.objects.all_sorted(sort_order)\
             .exclude(hidden=True)
     return object_list(request, queryset,
-        paginate_by=24, allow_empty=True,
+        paginate_by=DEMOS_PAGE_SIZE, allow_empty=True,
         template_loader=template_loader,
         template_object_name='submission',
         template_name='demos/listing_all.html') 
@@ -88,7 +96,7 @@ def tag(request, tag):
 
     return tagged_object_list(request,
         queryset_or_model=queryset, tag=tag,
-        paginate_by=24, allow_empty=True, 
+        paginate_by=DEMOS_PAGE_SIZE, allow_empty=True, 
         template_loader=template_loader,
         template_object_name='submission',
         template_name='demos/listing_tag.html')
@@ -100,7 +108,7 @@ def search(request):
     queryset = Submission.objects.search(query_string, sort_order)\
             .exclude(hidden=True)
     return object_list(request, queryset,
-        paginate_by=24, allow_empty=True,
+        paginate_by=DEMOS_PAGE_SIZE, allow_empty=True,
         template_loader=template_loader,
         template_object_name='submission',
         template_name='demos/listing_search.html') 
@@ -135,6 +143,13 @@ def like(request, slug):
     submission = get_object_or_404(Submission, slug=slug)
     if request.method == "POST":
         submission.likes.increment(request)
+    if request.GET.get('iframe', False):
+        # Use iframe event to update like button display to current state
+        event = ( (submission.likes.get_total_for_request(request) > 0) 
+            and 'liked' or 'unliked' )
+        return jingo.render(request, 'demos/iframe_utils.html', dict(
+            submission=submission, event=event
+        ))
     return HttpResponseRedirect(reverse(
         'demos.views.detail', args=(submission.slug,)))
 
@@ -142,6 +157,13 @@ def unlike(request, slug):
     submission = get_object_or_404(Submission, slug=slug)
     if request.method == "POST":
         submission.likes.decrement(request)
+    if request.GET.get('iframe', False):
+        # Use iframe event to update like button display to current state
+        event = ( (submission.likes.get_total_for_request(request) > 0) 
+            and 'liked' or 'unliked' )
+        return jingo.render(request, 'demos/iframe_utils.html', dict(
+            submission=submission, event=event
+        ))
     return HttpResponseRedirect(reverse(
         'demos.views.detail', args=(submission.slug,)))
 
@@ -193,6 +215,12 @@ def submit(request):
             if request.user.is_authenticated():
                 new_sub.creator = request.user
             new_sub.save()
+            ns_key = cache.get(DEMOS_CACHE_NS_KEY)
+            if ns_key is None:
+                ns_key = random.randint(1,10000)
+                cache.set(DEMOS_CACHE_NS_KEY, ns_key)
+            else:
+                cache.incr(DEMOS_CACHE_NS_KEY)
             
             # TODO: Process in a cronjob?
             new_sub.process_demo_package()

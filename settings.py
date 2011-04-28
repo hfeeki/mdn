@@ -72,8 +72,8 @@ TIME_ZONE = 'America/Los_Angeles'
 LANGUAGE_CODE = 'en-US'
 
 # Accepted locales
-MDN_LANGUAGES = ('en-US', 'de', 'fr', 'el', 'es', 'fy-NL', 'ga', 'hr', 'hu', 'ko', 'ja', 'nl', 'pl', 'sl', 'sq',
-                 'zh-CN', 'zh-TW')
+MDN_LANGUAGES = ('en-US', 'de', 'el', 'es', 'fr', 'fy-NL', 'ga', 'hr', 'hu', 'id',
+                 'ja', 'ko', 'nl', 'pl', 'ro', 'sl', 'sq', 'th', 'zh-CN', 'zh-TW')
 RTL_LANGUAGES = None # ('ar', 'fa', 'fa-IR', 'he')
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in MDN_LANGUAGES])
 
@@ -208,6 +208,7 @@ JAVA_BIN = '/usr/bin/java'
 
 MIDDLEWARE_CLASSES = (
     'devmo.middleware.LocaleURLMiddleware',
+    'devmo.middleware.Forbidden403Middleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
